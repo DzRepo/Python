@@ -2,6 +2,8 @@ import requests
 from requests_oauthlib import OAuth1 
 import json
 
+http://docs.python-requests.org/en/master/user/install/#install
+
 class Insights:
     """Gnip Insights API Client"""
     base_url="https://data-api.twitter.com/insights/"
