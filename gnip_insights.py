@@ -2,7 +2,7 @@ import requests
 from requests_oauthlib import OAuth1 
 import json
 
-http://docs.python-requests.org/en/master/user/install/#install
+# requests_oauth library located at http://docs.python-requests.org/en/master/user/install/#install
 
 class Insights:
     """Gnip Insights API Client"""
