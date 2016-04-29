@@ -1,6 +1,6 @@
 ##Full Archive Search##
   - Tested with Python 2.7
-  - Requires `requests` library located at (python requests)[http://docs.python-requests.org/en/master/]
+  - Requires `requests` library located at [python requests](http://docs.python-requests.org/en/master/)
 
 ###Install Directions###
   - Copy all files to a directory on a server with sufficient disk space
