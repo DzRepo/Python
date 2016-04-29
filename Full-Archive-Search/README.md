@@ -11,7 +11,9 @@
 
 ###Usage###
   FAS.py - Retrieve Gnip Full Archive Search results
+  
   Usage: FAS.py
+  
     -e OR --endpoint=["Counts" | "Data"*] (optional)
     
     -q OR --query="Escaped Query Here" (required)
@@ -29,6 +31,6 @@
     * denotes default option if omitted
     
   
-  ####Example:####
+  ###Example:###
   `./FAS.py -e Counts -q "gnip" -o Results.json -b minute -f 201601010000 -t 201602010000'`
  
