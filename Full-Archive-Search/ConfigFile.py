@@ -12,7 +12,7 @@ import os
 def GetSettings(filename, section):
 	settings = {}
 	config=ConfigParser.RawConfigParser()
-	cfg_dir = os.environ['TAS_CFG']
+	cfg_dir = os.environ['GNIP_CFG']
 
 	try:
 		config.read(cfg_dir + "/" + filename)
