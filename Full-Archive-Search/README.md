@@ -1,7 +1,6 @@
-#Full Archive Search#
-
+##Full Archive Search##
   - Tested with Python 2.7
-  - Requires `requests_oauth` library located at http://docs.python-requests.org/en/master/user/install/#install
+  - Requires `requests` library located at (python requests)[http://docs.python-requests.org/en/master/]
 
 ###Install Directions###
   - Copy all files to a directory on a server with sufficient disk space
