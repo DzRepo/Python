@@ -31,6 +31,6 @@
     * denotes default option if omitted
     
   
-  ###Example:###
-  `./FAS.py -e Counts -q "gnip" -o Results.json -b minute -f 201601010000 -t 201602010000'`
+###Example:###
+`./FAS.py -e Counts -q "gnip" -o Results.json -b minute -f 201601010000 -t 201602010000'`
  
