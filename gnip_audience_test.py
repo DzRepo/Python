@@ -11,6 +11,7 @@ if __name__ == "__main__":
 	GROUPINGS_WIRELESS = '{"groupings": {"By-Country-Network": {"group_by": ["user.location.country", "user.device.network"]},"By-Device":{"group_by":["user.device.os"]}}}'
 	GROUPINGS_GENDER = '{"groupings": {"By-Gender": {"group_by": ["user.gender"]},"By-Gender-Interest":{"group_by":["user.gender", "user.interest"]}}}'
 	GROUPINGS_TV_SHOWS = '{"groupings": {"By-TV-Shows": {"group_by": ["user.tv.show"]},"By-Country-TV-Shows":{"group_by":["user.location.country","user.tv.show"]}}}'
+	GROUPINGS_BASICS = '{"groupings": {"By-Network": {"group_by": ["user.device.network"]},"By-Gender":{"group_by":["user.gender"]},"By-Region":{"group_by":["user.location.region"]},"By-Langage":{"group_by":["user.language"]}}}'
 
 	consumer_key="CONSUMER_KEY_HERE"
 	consumer_secret="CONSUMER_SECRET_HERE"
@@ -19,10 +20,10 @@ if __name__ == "__main__":
 
 	SEGMENT_NAME='My-First-Segment'
 	AUDIENCE_NAME="My-First-Audience"
-	
+
 	# A line delimited file of Twitter NUMERIC user ids
 	USER_ID_FILENAME="twitter_user_ids.txt"
-
+	
 	Segment_Create_Flag = True
 	Segment_Append_Flag = True
 	Audience_Create_Flag = True
@@ -69,15 +70,30 @@ if __name__ == "__main__":
 			except IOError:
 				print("  Error - Cannot find or open:", USER_ID_FILENAME)
 			
+			loopFlag = True
+			start_id = 0
+			
 			print("  Appending IDs")
 			print("  ", segment['num_user_ids'], " users prior to append")
-			segment_append_response = audience.append_to_segment(append_to_id,id_list)
-			if segment_append_response.status_code == requests.codes.ok:
-				print("  Append Response:", segment_append_response.json()['num_user_ids'], ' users after append')  
-			elif segment_append_response.status_code == requests.codes.unauthorized:
-				print("  Append Segment Error - Unauthorized.  Check keys and tokens")
-			else:
-				print("  Append Segment Error - Status code:", segment_append_response.status_code)
+			
+			while loopFlag:
+				if len(id_list) < 100000:
+					max_id = len(id_list)
+				else:
+					max_id = 100000
+			
+				segment_append_response = audience.append_to_segment(append_to_id,id_list[start_id:max_id])
+				if segment_append_response.status_code == requests.codes.ok:
+					print("  Append Response:", segment_append_response.json()['num_user_ids'], ' users after append')
+					del id_list[start_id:max_id]
+					if max_id < 100000:
+						loopFlag = False
+				elif segment_append_response.status_code == requests.codes.unauthorized:
+					print("  Append Segment Error - Unauthorized.  Check keys and tokens")
+					loopFlag = False
+				else:
+					print("  Append Segment Error - Status code:", segment_append_response.status_code)
+					loopFlag = False
 	
 	if Audience_Create_Flag:
 		print("Creating Audience")
@@ -107,7 +123,7 @@ if __name__ == "__main__":
 		if get_audiences_response.status_code == requests.codes.ok:
 			for audience_item in get_audiences_response.json()['audiences']:
 				print("  Querying audience:", audience_item['name'])
-				audience_query_response = audience.get_audience_query(audience_item["id"],json.loads(GROUPINGS_WIRELESS))
+				audience_query_response = audience.get_audience_query(audience_item["id"],json.loads(GROUPINGS_BASICS))
 				if audience_query_response.status_code == requests.codes.ok:
 					print("  Audience Query Reponse:",  json.dumps(audience_query_response.json(), indent=3))
 				elif segment_append_response.status_code == requests.codes.unauthorized:
