@@ -7,7 +7,7 @@ import json
 class Insights:
     """Gnip Insights API Client"""
     base_url="https://data-api.twitter.com/insights/"
-    json_header = {"Content-Type" : "application/json"}
+    json_header = {"Content-Type" : "application/json", "Accept-Encoding":"gzip"}
 
     def __init__(self, consumer_key, consumer_secret, token, token_secret ):
     	self._consumer_key = consumer_key
