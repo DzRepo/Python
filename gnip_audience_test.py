@@ -18,11 +18,11 @@ if __name__ == "__main__":
 	token="TOKEN_HERE"
 	token_secret="TOKEN_SECRET_HERE"
 
-	SEGMENT_NAME='My-First-Segment'
-	AUDIENCE_NAME="My-First-Audience"
+	SEGMENT_NAME="Segment-Name-Here"
+	AUDIENCE_NAME="Audience-Name-Here"
 
 	# A line delimited file of Twitter NUMERIC user ids
-	USER_ID_FILENAME="twitter_user_ids.txt"
+	USER_ID_FILENAME="UserHandles.txt"
 	
 	Segment_Create_Flag = True
 	Segment_Append_Flag = True
@@ -86,8 +86,8 @@ if __name__ == "__main__":
 				if segment_append_response.status_code == requests.codes.ok:
 					print("  Append Response:", segment_append_response.json()['num_user_ids'], ' users after append')
 					del id_list[start_id:max_id]
-					if max_id < 100000:
-						loopFlag = False
+				if max_id < 100000:
+				    loopFlag = False
 				elif segment_append_response.status_code == requests.codes.unauthorized:
 					print("  Append Segment Error - Unauthorized.  Check keys and tokens")
 					loopFlag = False
