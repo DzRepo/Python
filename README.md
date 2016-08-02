@@ -9,8 +9,8 @@ Downloads, decompresses, and optionally processess individual activities within 
 #gnip_insights.py
 Library used to access Audience and Engagement APIs
 
-#gnip_audience_test.py
-Sample app to demonstrate building an segment + audience, then querying and cleaning it up.
+#AudienceAPI.py
+Sample app that uses all functions of Audience API.  Exectute ./AudienceAPI.py to get help.
 
 #gnip_engagement_test.py
 Sample app to demonstrate retrieving engagement data for owned and authorized Tweets.
